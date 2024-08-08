@@ -1,0 +1,26 @@
+<div class="container text-center justify-content-center">
+  <div class="row mt-4 border justify-content-center text-start p-4 rounded bg-light">
+    <div class="col-md-4"><h5>Title</h5></div>
+    <div class="col-md-4"><h5>Description</h5></div>
+    <div class="col-md-2"><h5>Update Date</h5></div>
+    <div class="col-md-2 text-center"><h5>Action</h5></div>
+  </div>
+
+  <div *ngFor="let item of model; index as i">
+    <div class="shadow-sm row text-start d-flex mt-2 border p-4 rounded">
+      <div class="col-md-4 "><h6>{{ item.title }}</h6></div>
+      <div class="col-md-4 "><h6>{{ item.description }}</h6></div>
+      <div class="col-md-2 "><div class="text-center row"><h6 class="p-0 m-0">{{ item.updated_at | date:'d MMM YY' }} </h6></div><div class="text-center row "><h6 class="p-0 m-0">{{ item.updated_at | date:'HH:mm' }} </h6></div></div>
+      <div class="col-md-1 align-items-center">
+        <a
+          class="btn btn-info m-0"
+          (click)="goToPage('edit/' + item.id)"
+          >Edit</a
+        >
+      </div>
+      <div class="col-md-1 align-items-center">
+        <a class="btn btn-danger m-0" (click)="delete(item.id)">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
