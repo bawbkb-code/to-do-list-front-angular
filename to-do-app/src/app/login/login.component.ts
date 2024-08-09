@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ApiService } from '../shared/services/api.service';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { TokenService } from '../shared/services/token.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -12,11 +13,17 @@ import { TokenService } from '../shared/services/token.service';
 export class LoginComponent {
   form!: UntypedFormGroup;
   model:any ={};
-  constructor(private router: Router,private apiService:ApiService,private formBuilder: UntypedFormBuilder,private tokenService:TokenService){
+  constructor(private router: Router,private apiService:ApiService,private formBuilder: UntypedFormBuilder,private tokenService:TokenService,private meta: Meta, private titleService: Title){
   }
 
   ngOnInit(){
     this.buildForm();
+    this.titleService.setTitle('Sing in');
+    this.meta.addTags([
+      { name: 'description', content: 'Sing in to TODO APP.' },
+      { name: 'keywords', content: 'login, sign in, angular, seo, universal,todoapp,todolist,to-do-lits' },
+      { name: 'robots', content: 'index, follow' },
+    ]);
   }
 
   buildForm(): void {

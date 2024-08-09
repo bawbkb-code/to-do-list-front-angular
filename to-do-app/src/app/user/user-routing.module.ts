@@ -14,14 +14,7 @@ const routes: Routes = [
           import("./to-do-list/to-do-list.module").then(
             (m) => m.ToDoListModule
           ),
-      },
-      {
-        path: "done-list",
-        loadChildren: () =>
-          import("./done-list/done-list.module").then(
-            (m) => m.DoneListModule
-          ),
-      },
+      }
     ],
   },
 ];
