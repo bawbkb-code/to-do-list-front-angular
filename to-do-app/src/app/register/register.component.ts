@@ -26,19 +26,29 @@ export class RegisterComponent {
     });
   }
 
+  back(){
+    this.router.navigate(["/login"]);
+  }
+  
   register(): void {
-    this.apiService.login("users", this.model).subscribe((response: any) => {
-      if(response.isSuccess){
-        window.alert("Register Success");
-        this.router.navigate(["/login"]);
-      }else{
+    if (this.form.valid) {
+      this.apiService.login("users", this.model).subscribe((response: any) => {
+        if(response.isSuccess){
+          window.alert("Register Success");
+          this.router.navigate(["/login"]);
+        }else{
+          window.alert("Register Failed");
+        }
+        
+      }, (err: any) => {
         window.alert("Register Failed");
-      }
-      
-    }, (err: any) => {
-      window.alert("Register Failed");
-      console.log(err);
-    });
+        console.log(err);
+      });
+    }else{
+      this.form.markAllAsTouched();
+      window.alert("Please fill in all required fields");
+    }
+    
   }
 
   

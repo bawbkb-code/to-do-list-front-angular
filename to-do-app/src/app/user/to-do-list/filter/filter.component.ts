@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/app/shared/services/api.service';
-import { TokenService } from 'src/app/shared/services/token.service';
+import { SwitchService } from 'src/app/shared/services/switch.service';
+
 
 @Component({
   selector: 'app-filter',
@@ -12,18 +12,19 @@ export class FilterComponent {
   txtView!: string;
   model:any={};
   username!:string;
-  constructor(private apiService:ApiService,private router:Router,private tokenService:TokenService){}
+
+  constructor(private router:Router,private switchService:SwitchService){}
 
   ngOnInit() {
-    this.model.isListMode = true;
+    this.model.isListMode = this.switchService.switchViewState();
     this.txtView = "List Mode";
-
   }
 
-  switchView(): void {
-    this.model.isListMode = !this.model.isListMode;
+  switchViewMode(): void {
+    this.switchService.switch();
+    this.model.isListMode = this.switchService.switchViewState(); 
     if (this.model.isListMode) {
-      this.txtView = "Calendar Mode";
+      this.txtView = "Table Mode";
     } else {
       this.txtView = "List Mode";
     }

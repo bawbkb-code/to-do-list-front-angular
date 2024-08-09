@@ -27,12 +27,17 @@ export class LoginComponent {
   }
 
   login(): void {
-    this.apiService.login("auth/login", this.model).subscribe((response: any) => {
-      this.tokenService.setToken(response.access_token);
-      this.router.navigate(["/user"]);
-    }, (err: any) => {
-      console.log(err);
-    });
+    if (this.form.valid) {
+      this.apiService.login("auth/login", this.model).subscribe((response: any) => {
+        this.tokenService.setToken(response.access_token);
+        this.router.navigate(["/user"]);
+      }, (err: any) => {
+        console.log(err);
+      });
+    }else{
+      this.form.markAllAsTouched();
+      window.alert("Please fill in all required fields");
+    }
   }
 
   registerPage(){

@@ -62,6 +62,12 @@ export class FormComponent {
     });
   }
 
+  back(){
+    this.router.navigate(["./"], {
+      relativeTo: this.activatedRoute.parent,
+    });
+  }
+  
   save(): void {
     if (!this.id) {
       this.create();
