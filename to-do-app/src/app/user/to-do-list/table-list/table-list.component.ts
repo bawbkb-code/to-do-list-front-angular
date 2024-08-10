@@ -25,7 +25,6 @@ export class TableListComponent {
     this.apiService.get('todo').subscribe((response: any) => {
       this.model = response.data;
       this.modelMap = this.mapData(response.data);
-
     });
   }
 

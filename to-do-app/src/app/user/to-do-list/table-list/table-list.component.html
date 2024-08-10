@@ -3,7 +3,7 @@
   class="container text-center justify-content-center"
 >
   <div
-    class="row mt-4 border justify-content-center text-start p-4 rounded bg-light fade-in show"
+    class="row mt-4 border justify-content-center text-start p-4 rounded bg-dark fade-in show shadow-sm text-white"
   >
     <div class="col-md-4"><h5>Title</h5></div>
     <div class="col-md-4"><h5>Description</h5></div>
@@ -44,25 +44,25 @@
   *ngIf="switchService._switchView() === true"
   class="container text-center justify-content-center"
 >
-  <table class="table table-hover table-light mt-4">
-    <thead >
-    <tr >
-      <th *ngFor="let column of modelMap.columns; index as i">{{ column.name }}</th>
-      <th>Action</th>
-    </tr>
+  <table class="table table-hover  table-bordered table-light mt-4">
+    <thead>
+      <tr>
+        <th *ngFor="let column of modelMap.columns; index as i">
+          {{ column.name }}
+        </th>
+        <th class="text-center">Action</th>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of modelMap.data">
-      <td *ngFor="let data of item">{{ data }}</td>
-      <td class="row justify-content-around"> <div class="col-md-1 align-items-center">
-        <a class="btn btn-info m-0" (click)="goToPage('edit/' + item[0])"
-          >Edit</a
-        >
-      </div>
-      <div class="col-md-1 align-items-center">
-        <a class="btn btn-danger m-0" (click)="delete(item[0])">Delete</a>
-      </div></td>
-    </tr>
-  </tbody>
+      <tr *ngFor="let item of modelMap.data">
+        <td *ngFor="let data of item">{{ data }}</td>
+        <td>
+          <div class="justify-content-evenly align-items-center">
+            <a class="btn btn-info m-0" (click)="goToPage('edit/' + item[0])">Edit</a>
+            <a class="btn btn-danger m-0 ms-4" (click)="delete(item[0])">Delete</a>
+          </div>
+        </td>
+      </tr>
+    </tbody>
   </table>
 </div>
